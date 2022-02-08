@@ -1,0 +1,44 @@
+{ 
+    "_id" : ObjectId("6202c86161bdfb3bbc13346e"), 
+    "name" : "Peter", 
+    "department" : {
+        "department_name" : "Computer science", 
+        "location" : "Ukraine"
+    }, 
+    "mail" : "peter@gmail.com"
+}
+{ 
+    "_id" : ObjectId("6202da6561bdfb3bbc133491"), 
+    "name" : "Peter", 
+    "mail" : "peter@gmail.com", 
+    "subjects" : [
+        {
+            "subject_name" : "Java", 
+            "marks_obtained" : 70.0
+        }, 
+        {
+            "subject_name" : "MongoDB", 
+            "marks_obtained" : 80.0
+        }
+    ]
+}
+{ 
+    "_id" : ObjectId("6202e0f3e8cd146e17e3b56a"), 
+    "name" : "Dmytro", 
+    "mail" : "dmytro@gmail.com", 
+    "department" : {
+        "department_name" : "Computer Science", 
+        "location" : "Ukraine"
+    }, 
+    "subjects" : [
+        {
+            "subject_name" : "Java", 
+            "marks_obtained" : NumberInt(80)
+        }, 
+        {
+            "subject_name" : "MongoDB", 
+            "marks_obtained" : NumberInt(70)
+        }
+    ], 
+    "_class" : "com.dc14.entity.Student"
+}
