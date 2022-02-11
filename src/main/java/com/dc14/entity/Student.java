@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -28,8 +29,10 @@ public class Student {
     @Getter(AccessLevel.NONE)
     double percentage;
 
+    @DBRef
     Department department;
 
+    @DBRef
     List<Subject> subjects;
 
     public double getPercentage() {

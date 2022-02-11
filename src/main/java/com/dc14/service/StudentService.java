@@ -1,7 +1,12 @@
 package com.dc14.service;
 
+import com.dc14.entity.Department;
 import com.dc14.entity.Student;
+import com.dc14.entity.Subject;
+import com.dc14.repository.DepartmentRepository;
 import com.dc14.repository.StudentRepository;
+import com.dc14.repository.SubjectRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,15 +15,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class StudentService {
 
     private final StudentRepository studentRepository;
-
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
+    private final DepartmentRepository departmentRepository;
+    private final SubjectRepository subjectRepository;
 
     public Student createStudent(Student student) {
+        Department department = student.getDepartment();
+        if (department != null) {
+            departmentRepository.save(department);
+        }
+        List<Subject> subjects = student.getSubjects();
+        if (subjects != null && !subjects.isEmpty()) {
+            subjectRepository.saveAll(subjects);
+        }
         return studentRepository.save(student);
     }
 
