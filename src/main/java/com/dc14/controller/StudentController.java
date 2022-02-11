@@ -2,19 +2,18 @@ package com.dc14.controller;
 
 import com.dc14.entity.Student;
 import com.dc14.service.StudentService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/student")
+@AllArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
-
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     @PostMapping("/create")
     public Student createStudent(@RequestBody Student student) {
@@ -42,22 +41,27 @@ public class StudentController {
     }
 
     @GetMapping("/studentsByName/{name}")
-    public List<Student> studentsByName(@PathVariable String name) {
-        return studentService.getAllStudentsByName(name);
+    public List<Student> getStudentsByName(@PathVariable String name) {
+        return studentService.getStudentsByName(name);
     }
 
     @GetMapping("/studentsByNameAndMail")
-    public List<Student> studentsByNameAndMail(@RequestParam String name, @RequestParam String email) {
+    public List<Student> getStudentsByNameAndMail(@RequestParam String name, @RequestParam String email) {
         return studentService.studentsByNameAndMail(name, email);
     }
 
     @GetMapping("/studentsByNameOrMail")
-    public List<Student> studentsByNameOrMail(@RequestParam String name, @RequestParam String email) {
-        return studentService.studentsByNameOrMail(name, email);
+    public List<Student> getStudentsByNameOrMail(@RequestParam String name, @RequestParam String email) {
+        return studentService.getStudentsByNameOrMail(name, email);
     }
 
     @GetMapping("/allWithPagination")
     public List<Student> getAllWithPagination(@RequestParam int pageNo, @RequestParam int pageSize) {
         return studentService.getAllWithPagination(pageNo, pageSize);
+    }
+
+    @GetMapping("/allWithSortingByName")
+    public List<Student> allWithSortingByName() {
+        return studentService.getAllWithSortingByName();
     }
 }

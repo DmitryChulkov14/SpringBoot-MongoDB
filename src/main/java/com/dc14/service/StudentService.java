@@ -4,6 +4,7 @@ import com.dc14.entity.Student;
 import com.dc14.repository.StudentRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class StudentService {
         return "Student has been deleted!";
     }
 
-    public List<Student> getAllStudentsByName(String name) {
+    public List<Student> getStudentsByName(String name) {
         return studentRepository.findStudentByName(name);
     }
 
@@ -46,7 +47,7 @@ public class StudentService {
         return studentRepository.findStudentByNameAndEmail(name, email);
     }
 
-    public List<Student> studentsByNameOrMail(String name, String email) {
+    public List<Student> getStudentsByNameOrMail(String name, String email) {
         return studentRepository.findStudentByNameOrEmail(name, email);
     }
 
@@ -54,5 +55,11 @@ public class StudentService {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize); // "-1" could be handled on UI side
 
         return studentRepository.findAll(pageable).getContent();
+    }
+
+    public List<Student> getAllWithSortingByName() {
+        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+
+        return studentRepository.findAll(sort);
     }
 }
