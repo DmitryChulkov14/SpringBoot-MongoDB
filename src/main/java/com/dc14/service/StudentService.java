@@ -70,4 +70,8 @@ public class StudentService {
     public List<Student> getAllBySubjectName(String subjectName) {
         return studentRepository.findBySubjectsName(subjectName);
     }
+
+    public List<Student> getAllByEmailLike(String email) {
+        return studentRepository.findByEmailIsLike(email);
+    }
 }

@@ -18,4 +18,6 @@ public interface StudentRepository extends MongoRepository<Student, String> {
     List<Student> findByDepartmentName(String departmentName);
 
     List<Student> findBySubjectsName(String subjectName);
+
+    List<Student> findByEmailIsLike(String email);
 }
