@@ -35,4 +35,8 @@ public class StudentService {
         studentRepository.deleteById(id);
         return "Student has been deleted!";
     }
+
+    public List<Student> getAllStudentsByName(String name) {
+        return studentRepository.findStudentByName(name);
+    }
 }
