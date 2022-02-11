@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -23,7 +24,23 @@ public class Student {
     @Field(name = "mail")
     String email;
 
+    @Transient
+    @Getter(AccessLevel.NONE)
+    double percentage;
+
     Department department;
 
     List<Subject> subjects;
+
+    public double getPercentage() {
+        if (subjects != null && !subjects.isEmpty()) {
+            int total = subjects.stream()
+                    .map(Subject::getMarksObtained)
+                    .reduce(0, Integer::sum);
+
+            return (double) total / subjects.size();
+        }
+
+        return 0.00;
+    }
 }
