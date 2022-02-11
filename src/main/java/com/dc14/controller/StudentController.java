@@ -79,4 +79,9 @@ public class StudentController {
     public List<Student> getAllByEmailLike(@RequestParam String email) {
         return studentService.getAllByEmailLike(email);
     }
+
+    @GetMapping("/allByNameStartsWith")
+    public List<Student> getAllByNameStartsWith(@RequestParam String name) {
+        return studentService.getAllByNameStartsWith(name);
+    }
 }
