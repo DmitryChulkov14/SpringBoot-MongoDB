@@ -22,7 +22,7 @@ public class StudentController {
     }
 
     @GetMapping("/getById/{id}")
-    public Student getStudentById(@PathVariable String id){
+    public Student getStudentById(@PathVariable String id) {
         return studentService.getStudentById(id);
     }
 
@@ -32,7 +32,7 @@ public class StudentController {
     }
 
     @PutMapping("/update")
-    public Student updateStudent(@RequestBody Student student){
+    public Student updateStudent(@RequestBody Student student) {
         return studentService.updateStudent(student);
     }
 
@@ -42,7 +42,12 @@ public class StudentController {
     }
 
     @GetMapping("/studentsByName/{name}")
-    public List<Student> studentsByName (@PathVariable String name) {
+    public List<Student> studentsByName(@PathVariable String name) {
         return studentService.getAllStudentsByName(name);
+    }
+
+    @GetMapping("/studentsByNameAndMail")
+    public List<Student> studentsByNameAndMail(@RequestParam String name, @RequestParam String email) {
+        return studentService.studentsByNameAndMail(name, email);
     }
 }
