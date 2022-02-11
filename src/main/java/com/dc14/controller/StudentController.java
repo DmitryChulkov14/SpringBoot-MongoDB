@@ -64,16 +64,6 @@ public class StudentController {
         return studentService.getAllWithSortingByName();
     }
 
-    @GetMapping("/allByDepartmentName")
-    public List<Student> getAllByDepartmentName(@RequestParam String departmentName) {
-        return studentService.getAllByDepartmentName(departmentName);
-    }
-
-    @GetMapping("/allBySubjectName")
-    public List<Student> getAllBySubjectName(@RequestParam String subjectName) {
-        return studentService.getAllBySubjectName(subjectName);
-    }
-
     @GetMapping("/allByEmailLike")
     public List<Student> getAllByEmailLike(@RequestParam String email) {
         return studentService.getAllByEmailLike(email);
@@ -82,5 +72,10 @@ public class StudentController {
     @GetMapping("/allByNameStartsWith")
     public List<Student> getAllByNameStartsWith(@RequestParam String name) {
         return studentService.getAllByNameStartsWith(name);
+    }
+
+    @GetMapping("/allByDepartmentId")
+    public List<Student> getAllByDepartmentId(@RequestParam String departmentId) {
+        return studentService.getAllByDepartmentId(departmentId);
     }
 }

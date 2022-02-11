@@ -75,19 +75,15 @@ public class StudentService {
         return studentRepository.findAll(sort);
     }
 
-    public List<Student> getAllByDepartmentName(String departmentName) {
-        return studentRepository.findByDepartmentName(departmentName);
-    }
-
-    public List<Student> getAllBySubjectName(String subjectName) {
-        return studentRepository.findBySubjectsName(subjectName);
-    }
-
     public List<Student> getAllByEmailLike(String email) {
         return studentRepository.findByEmailIsLike(email);
     }
 
     public List<Student> getAllByNameStartsWith(String name) {
         return studentRepository.findByNameStartsWith(name);
+    }
+
+    public List<Student> getAllByDepartmentId(String departmentId) {
+        return studentRepository.findByDepartmentId(departmentId);
     }
 }
