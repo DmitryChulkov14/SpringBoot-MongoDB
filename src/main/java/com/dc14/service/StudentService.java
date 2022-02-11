@@ -2,6 +2,8 @@ package com.dc14.service;
 
 import com.dc14.entity.Student;
 import com.dc14.repository.StudentRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,5 +48,11 @@ public class StudentService {
 
     public List<Student> studentsByNameOrMail(String name, String email) {
         return studentRepository.findStudentByNameOrEmail(name, email);
+    }
+
+    public List<Student> getAllWithPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize); // "-1" could be handled on UI side
+
+        return studentRepository.findAll(pageable).getContent();
     }
 }
